@@ -1,6 +1,6 @@
 # 당근 뽑기 게임
 
-with VanillaJS
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 
 ## 구현할 기능
 

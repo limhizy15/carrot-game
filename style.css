@@ -21,8 +21,17 @@ h3 {
   border-radius: 5px;
 }
 
-.play {
-  margin-top: 20px;
+#play-btn,
+#pause-btn {
+  font-size: 18px;
+}
+
+#play-btn {
+  display: block;
+}
+
+#pause-btn {
+  display: none;
 }
 
 .items {

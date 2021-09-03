@@ -35,3 +35,14 @@ pauseBtn.addEventListener("click", () => {
 const carrots = document.querySelectorAll(".carrot");
 const remainCarrots = document.querySelector(".remain-carrot");
 remainCarrots.innerText = carrots.length;
+
+// 당근 클릭하면 해당 당근 없어지기
+const items = document.querySelector(".items");
+items.addEventListener("click", (e) => {
+  // console.log(e.target.className);
+  if (e.target.className === "carrot") {
+    e.target.remove();
+    const carrots = document.querySelectorAll(".carrot");
+    remainCarrots.innerText = carrots.length;
+  }
+});

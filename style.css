@@ -48,6 +48,11 @@ button {
   transform: scale(1.1);
 }
 
+/* add */
+.stop-btn {
+  display: none;
+}
+
 .game__timer {
   width: 100px;
   background-color: white;
@@ -58,6 +63,7 @@ button {
 
   border-radius: 20px;
   font-weight: bold;
+  visibility: hidden;
 }
 
 .game__score {
@@ -71,6 +77,8 @@ button {
   border-radius: 50%;
   color: white;
   border: 3px solid black;
+
+  visibility: hidden;
 }
 
 .game__field {

@@ -53,8 +53,8 @@ const gameTimer = document.querySelector(".game__timer");
 const gameScore = document.querySelector(".game__score");
 
 let started = false;
-let score = 0;
-let timer = undefined;
+let score = 10;
+let timer = 10;
 
 startBtn.addEventListener("click", () => {
   if (started) {
@@ -85,4 +85,19 @@ function showTimerAndScore() {
   gameScore.style.visibility = "visible";
 }
 
-function startGameTimer() {}
+let interval;
+
+function startGameTimer() {
+  updateTimerText(timer);
+  interval = setInterval(() => {
+    if (timer <= 0) {
+      clearInterval(interval);
+      return;
+    }
+    updateTimerText(--timer);
+  }, 1000);
+}
+
+function updateTimerText(sec) {
+  gameTimer.innerText = `0:${timer}`;
+}

@@ -13,27 +13,23 @@
     ></script>
   </head>
   <body>
-    <section class="container">
-      <button class="toggle-btn">
-        <i id="play-btn" class="far fa-play-circle"></i>
-        <i id="pause-btn" class="far fa-pause-circle"></i>
+    <!-- 게임 영역 -->
+    <section class="game">
+      <header class="game__header">
+        <button class="game__button">
+          <i class="fas fa-play"></i>
+        </button>
+        <span class="game__timer">0:0</span>
+        <span class="game__timer">9</span>
+      </header>
+      <section class="game__field"></section>
+    </section>
+    <!-- 팝업 영역 -->
+    <section class="pop-up">
+      <button class="pop-up__refresh">
+        <i class="fas fa-redo"></i>
       </button>
-      <span class="timer">9:99</span>
-      <h3 class="remain-carrot">3</h3>
-      <div class="items">
-        <img src="img/carrot.png" alt="carrot" class="carrot" />
-        <img src="img/carrot.png" alt="carrot" class="carrot" />
-        <img src="img/carrot.png" alt="carrot" class="carrot" />
-        <img src="img/carrot.png" alt="carrot" class="carrot" />
-        <img src="img/carrot.png" alt="carrot" class="carrot" />
-
-        <img src="img/bug.png" alt="bug" class="bug" />
-        <img src="img/bug.png" alt="bug" class="bug" />
-        <img src="img/bug.png" alt="bug" class="bug" />
-        <img src="img/bug.png" alt="bug" class="bug" />
-        <img src="img/bug.png" alt="bug" class="bug" />
-        <img src="img/bug.png" alt="bug" class="bug" />
-      </div>
+      <span class="pop-up__message"></span>
     </section>
   </body>
 </html>

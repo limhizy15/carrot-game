@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: black;
+  /* background-color: black; */
 }
 
 h3 {
@@ -37,4 +37,5 @@ h3 {
 .items {
   /* TODO 수정할 것 */
   margin-top: 20px;
+  /* display: none; */
 }

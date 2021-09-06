@@ -37,3 +37,8 @@
 - 그리고 평소에는 `display: none;`이 되도록
 - [x] text를 가운데 정렬하기 위해 `margin: auto;`를 사용하는 경우 위 아래 마진은 어떻게 주는 게 좋을지?
 - 그냥 `text-align:center;`으로 해결했다. (정렬할 때 생각 많이 필요! 🚀)
+
+### JavaScript로 기능 추가
+
+- [x] 당근, 벌레 랜덤 배치
+- 위치를 난수 생성해서 top, left를 지정해주자 (`position: absolute`)

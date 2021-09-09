@@ -45,7 +45,7 @@ function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-const startBtn = document.querySelector(".game__button");
+const gameBtn = document.querySelector(".game__button");
 const playBtn = document.querySelector(".play-btn");
 const stopBtn = document.querySelector(".stop-btn");
 
@@ -56,7 +56,7 @@ let started = false;
 let score = 10;
 let timer = 10;
 
-startBtn.addEventListener("click", () => {
+gameBtn.addEventListener("click", () => {
   if (started) {
     stopGame();
   } else {
@@ -64,8 +64,6 @@ startBtn.addEventListener("click", () => {
   }
   started = !started;
 });
-
-function stopGame() {}
 
 function startGame() {
   initGame();
@@ -75,7 +73,7 @@ function startGame() {
 }
 
 function showStopButton() {
-  const icon = startBtn.querySelector(".play-btn");
+  const icon = gameBtn.querySelector(".play-btn");
   icon.classList.add("fa-stop");
   icon.classList.remove("fa-play");
 }
@@ -100,4 +98,28 @@ function startGameTimer() {
 
 function updateTimerText(sec) {
   gameTimer.innerText = `0:${timer}`;
+}
+
+// 게임 중지
+const popUp = document.querySelector(".pop-up");
+const popUpText = document.querySelector(".pop-up__message");
+const popUpRefresh = document.querySelector(".pop-up__refresh");
+
+function stopGame() {
+  stopGameTimer();
+  hideGameButton();
+  showPopupWithText("REFRESH ❓");
+}
+
+function stopGameTimer() {
+  clearInterval(interval);
+}
+
+function hideGameButton() {
+  gameBtn.style.visibility = "hidden";
+}
+
+function showPopupWithText(text) {
+  popUp.classList.remove("pop-up--hide");
+  popUpText.innerText = text;
 }

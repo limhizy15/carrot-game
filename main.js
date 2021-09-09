@@ -62,10 +62,11 @@ gameBtn.addEventListener("click", () => {
   } else {
     startGame();
   }
-  started = !started;
+  // started = !started;
 });
 
 function startGame() {
+  started = true;
   initGame();
   showStopButton();
   showTimerAndScore();
@@ -73,7 +74,7 @@ function startGame() {
 }
 
 function showStopButton() {
-  const icon = gameBtn.querySelector(".play-btn");
+  const icon = gameBtn.querySelector(".fas");
   icon.classList.add("fa-stop");
   icon.classList.remove("fa-play");
 }
@@ -107,6 +108,7 @@ const popUpText = document.querySelector(".pop-up__message");
 const popUpRefresh = document.querySelector(".pop-up__refresh");
 
 function stopGame() {
+  started = false;
   stopGameTimer();
   hideGameButton();
   showPopupWithText("REFRESH ❓");
@@ -158,4 +160,14 @@ function finishGame(win) {
   started = false;
   hideGameButton();
   showPopupWithText(win ? "YOU WIN 🚀" : "YOU LOST 💩");
+}
+
+// 재시작
+popUpRefresh.addEventListener("click", () => {
+  startGame();
+  hidePopUp();
+});
+
+function hidePopUp() {
+  popUp.classList.add("pop-up--hide");
 }

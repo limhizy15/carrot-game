@@ -53,7 +53,7 @@ const gameTimer = document.querySelector(".game__timer");
 const gameScore = document.querySelector(".game__score");
 
 let started = false;
-let score = 10;
+let score = 0;
 let timer = 10;
 
 gameBtn.addEventListener("click", () => {
@@ -90,6 +90,7 @@ function startGameTimer() {
   interval = setInterval(() => {
     if (timer <= 0) {
       clearInterval(interval);
+      finishGame(score === 5);
       return;
     }
     updateTimerText(--timer);
@@ -122,4 +123,39 @@ function hideGameButton() {
 function showPopupWithText(text) {
   popUp.classList.remove("pop-up--hide");
   popUpText.innerText = text;
+}
+
+// field event
+field.addEventListener("click", onFieldClick);
+
+function onFieldClick(e) {
+  if (!started) {
+    return;
+  }
+  const target = e.target;
+
+  if (target.matches(".carrot")) {
+    // 당근
+    target.remove();
+    score++;
+    updateScoreBoard();
+
+    if (score === 5) {
+      finishGame(true);
+    }
+  } else if (target.matches(".bug")) {
+    //벌레
+    stopGameTimer();
+    finishGame(false);
+  }
+}
+
+function updateScoreBoard() {
+  gameScore.innerText = 5 - score;
+}
+
+function finishGame(win) {
+  started = false;
+  hideGameButton();
+  showPopupWithText(win ? "YOU WIN 🚀" : "YOU LOST 💩");
 }

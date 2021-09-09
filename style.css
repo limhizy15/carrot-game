@@ -64,6 +64,8 @@ button {
   border-radius: 20px;
   font-weight: bold;
   visibility: hidden;
+  user-select: none;
+  cursor: auto;
 }
 
 .game__score {
@@ -79,6 +81,8 @@ button {
   border: 3px solid black;
 
   visibility: hidden;
+  user-select: none;
+  cursor: auto;
 }
 
 .game__field {

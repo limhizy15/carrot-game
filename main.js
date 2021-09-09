@@ -9,6 +9,7 @@ const fieldHeight = field.getBoundingClientRect().height;
 const fieldWidth = field.getBoundingClientRect().width;
 
 function initGame() {
+  score = 0;
   field.innerHTML = "";
   gameScore.innerText = CARROT_COUNT;
   // 벌레, 당근을 field에 추가
@@ -77,6 +78,7 @@ function showStopButton() {
   const icon = gameBtn.querySelector(".fas");
   icon.classList.add("fa-stop");
   icon.classList.remove("fa-play");
+  gameBtn.style.visibility = "visible";
 }
 
 function showTimerAndScore() {
@@ -147,7 +149,7 @@ function onFieldClick(e) {
     }
   } else if (target.matches(".bug")) {
     //벌레
-    stopGameTimer();
+
     finishGame(false);
   }
 }
@@ -160,6 +162,7 @@ function finishGame(win) {
   started = false;
   hideGameButton();
   showPopupWithText(win ? "YOU WIN 🚀" : "YOU LOST 💩");
+  stopGameTimer();
 }
 
 // 재시작

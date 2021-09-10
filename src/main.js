@@ -1,5 +1,7 @@
 "use strict";
 
+import PopUp from "./popup.js";
+
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
 
@@ -7,6 +9,11 @@ const field = document.querySelector(".game__field");
 const fieldRect = field.getBoundingClientRect();
 const fieldHeight = field.getBoundingClientRect().height;
 const fieldWidth = field.getBoundingClientRect().width;
+
+const gameFinishBanner = new PopUp();
+gameFinishBanner.setClickListener(() => {
+  startGame();
+});
 
 function initGame() {
   score = 0;
@@ -105,15 +112,12 @@ function updateTimerText(sec) {
 }
 
 // 게임 중지
-const popUp = document.querySelector(".pop-up");
-const popUpText = document.querySelector(".pop-up__message");
-const popUpRefresh = document.querySelector(".pop-up__refresh");
 
 function stopGame() {
   started = false;
   stopGameTimer();
   hideGameButton();
-  showPopupWithText("REFRESH ❓");
+  gameFinishBanner.showWithText("REFRESH ?");
 }
 
 function stopGameTimer() {
@@ -122,11 +126,6 @@ function stopGameTimer() {
 
 function hideGameButton() {
   gameBtn.style.visibility = "hidden";
-}
-
-function showPopupWithText(text) {
-  popUp.classList.remove("pop-up--hide");
-  popUpText.innerText = text;
 }
 
 // field event
@@ -161,16 +160,6 @@ function updateScoreBoard() {
 function finishGame(win) {
   started = false;
   hideGameButton();
-  showPopupWithText(win ? "YOU WIN 🚀" : "YOU LOST 💩");
+  gameFinishBanner.showWithText(win ? "YOU WIN 🚀" : "YOU LOST 💩");
   stopGameTimer();
-}
-
-// 재시작
-popUpRefresh.addEventListener("click", () => {
-  startGame();
-  hidePopUp();
-});
-
-function hidePopUp() {
-  popUp.classList.add("pop-up--hide");
 }

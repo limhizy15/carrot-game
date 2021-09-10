@@ -1,51 +1,40 @@
 "use strict";
 
 import PopUp from "./popup.js";
+import Field from "./field.js";
 
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
-
-const field = document.querySelector(".game__field");
-const fieldRect = field.getBoundingClientRect();
-const fieldHeight = field.getBoundingClientRect().height;
-const fieldWidth = field.getBoundingClientRect().width;
 
 const gameFinishBanner = new PopUp();
 gameFinishBanner.setClickListener(() => {
   startGame();
 });
 
-function initGame() {
-  score = 0;
-  field.innerHTML = "";
-  gameScore.innerText = CARROT_COUNT;
-  // 벌레, 당근을 field에 추가
-  addItem("carrot", CARROT_COUNT, "img/carrot.png");
-  addItem("bug", BUG_COUNT, "img/bug.png");
+const gameField = new Field(CARROT_COUNT, BUG_COUNT);
+gameField.setClickListener(onItemClick);
+
+function onItemClick(e) {
+  if (!started) {
+    return;
+  }
+
+  if (item === "carrot") {
+    score++;
+    updateScoreBoard();
+
+    if (score === CARROT_COUNT) {
+      finishGame(true);
+    }
+  } else if (item === "bug") {
+    finishGame(false);
+  }
 }
 
-function addItem(className, count, imgPath) {
-  // position 랜덤 생성 후 추가
-  const x1 = 0;
-  const y1 = 0;
-
-  const x2 = fieldWidth - 80;
-  const y2 = fieldHeight - 80; // 아이템 크기만큼 빼줘야함
-
-  for (let i = 0; i < count; i++) {
-    const item = document.createElement("img");
-    item.setAttribute("class", className);
-    item.setAttribute("src", imgPath);
-    item.style.position = "absolute";
-
-    const x = randomNumber(x1, x2);
-    const y = randomNumber(y1, y2);
-
-    item.style.left = `${x}px`;
-    item.style.top = `${y}px`;
-
-    field.appendChild(item);
-  }
+function initGame() {
+  score = 0;
+  gameScore.innerText = CARROT_COUNT;
+  gameField.init();
 }
 
 function randomNumber(min, max) {
@@ -129,29 +118,6 @@ function hideGameButton() {
 }
 
 // field event
-field.addEventListener("click", onFieldClick);
-
-function onFieldClick(e) {
-  if (!started) {
-    return;
-  }
-  const target = e.target;
-
-  if (target.matches(".carrot")) {
-    // 당근
-    target.remove();
-    score++;
-    updateScoreBoard();
-
-    if (score === 5) {
-      finishGame(true);
-    }
-  } else if (target.matches(".bug")) {
-    //벌레
-
-    finishGame(false);
-  }
-}
 
 function updateScoreBoard() {
   gameScore.innerText = 5 - score;
